@@ -70,3 +70,9 @@ joincmp <- function(a, b, a_name = 'A', b_name = 'B', skip_a = FALSE, skip_b = F
     i_len = intersection_len,
     u_len = union_len))
 }
+
+#' @export
+filter_out <- function(df, ...) {
+  expr <- rlang::enquos(...)
+  dplyr::filter(df, !(!!expr[[1]]))
+}
